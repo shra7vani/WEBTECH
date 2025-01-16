@@ -1,0 +1,13 @@
+body {
+    background-image: url("blue.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  screen {
+    .resume-container {
+      width: 50%;          /* Full width for screen size */
+      max-width: 900px;     /* Max width for screen devices */
+      height: auto;         /* Let content flow on screens */
+      margin: 20px auto;
+    }
+  }
