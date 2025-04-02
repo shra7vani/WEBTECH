@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Animations</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        #imageContainer {
+            position: relative;
+            width: 300px;
+            height: 200px;
+        }
+
+        #myImage {
+            position: absolute; /* Added for proper movement */
+            left: 0px;
+            width: 200px;
+            height: auto;
+            transition: left 0.5s, opacity 0.5s, filter 0.5s;
+        }
+
+        #hiddenText {
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+            text-align: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="imageContainer">
+        <img id="myImage" src="Bugatti-Chiron.jpg" alt="Animated Image">
+        <p id="hiddenText">Hellooo!</p>
+    </div>
+
+    <div class="controls">
+        <button onclick="moveLeft()">Move Left</button>
+        <button onclick="moveRight()">Move Right</button>
+        <button onclick="toggleImage()">Toggle Image</button>
+        <button onclick="changeColor()">Change Color</button>
+        <button onclick="fadeInText()">Show Message</button>
+    </div>
+
+    <script>
+        const image = document.getElementById('myImage');
+        const text = document.getElementById('hiddenText');
+        let leftPosition = 0;
+        let isVisible = true;
+
+        function moveLeft() {
+            leftPosition -= 50;
+            image.style.left = leftPosition + 'px';
+        }
+
+        function moveRight() {
+            leftPosition += 50;
+            image.style.left = leftPosition + 'px';
+        }
+
+        function toggleImage() {
+            isVisible = !isVisible;
+            image.style.opacity = isVisible ? 1 : 0;
+        }
+
+        function changeColor() {
+            const randomColor = `hue-rotate(${Math.random() * 360}deg)`;
+            image.style.filter = randomColor;
+        }
+
+        function fadeInText() {
+            text.style.display = 'block';
+            setTimeout(() => {
+                text.style.opacity = 1;
+            }, 100);
+
+            setTimeout(() => {
+                text.style.opacity = 0;
+                setTimeout(() => {
+                    text.style.display = 'none';
+                }, 500);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
